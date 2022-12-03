@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wall -Wextra -std=c++17 -g CMakeFiles/create_raster.dir/src/data.cpp.o CMakeFiles/create_raster.dir/src/main.cpp.o -o create_raster 
