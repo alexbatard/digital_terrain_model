@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/create_raster.dir/src/data.cpp.o"
-  "CMakeFiles/create_raster.dir/src/data.cpp.o.d"
   "CMakeFiles/create_raster.dir/src/main.cpp.o"
   "CMakeFiles/create_raster.dir/src/main.cpp.o.d"
+  "CMakeFiles/create_raster.dir/src/terrain_data.cpp.o"
+  "CMakeFiles/create_raster.dir/src/terrain_data.cpp.o.d"
   "create_raster"
   "create_raster.pdb"
 )

@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/alex/Documents/C++/MNT_project
+CMAKE_SOURCE_DIR = /home/alex/Documents/C++/digital_terrain_model
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/alex/Documents/C++/MNT_project/build
+CMAKE_BINARY_DIR = /home/alex/Documents/C++/digital_terrain_model/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/Documents/C++/MNT_project/build/CMakeFiles /home/alex/Documents/C++/MNT_project/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/Documents/C++/digital_terrain_model/build/CMakeFiles /home/alex/Documents/C++/digital_terrain_model/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/Documents/C++/MNT_project/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/Documents/C++/digital_terrain_model/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,30 +129,6 @@ create_raster/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/create_raster.dir/build.make CMakeFiles/create_raster.dir/build
 .PHONY : create_raster/fast
 
-src/data.o: src/data.cpp.o
-.PHONY : src/data.o
-
-# target to build an object file
-src/data.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/create_raster.dir/build.make CMakeFiles/create_raster.dir/src/data.cpp.o
-.PHONY : src/data.cpp.o
-
-src/data.i: src/data.cpp.i
-.PHONY : src/data.i
-
-# target to preprocess a source file
-src/data.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/create_raster.dir/build.make CMakeFiles/create_raster.dir/src/data.cpp.i
-.PHONY : src/data.cpp.i
-
-src/data.s: src/data.cpp.s
-.PHONY : src/data.s
-
-# target to generate assembly for a file
-src/data.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/create_raster.dir/build.make CMakeFiles/create_raster.dir/src/data.cpp.s
-.PHONY : src/data.cpp.s
-
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -177,6 +153,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/create_raster.dir/build.make CMakeFiles/create_raster.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/terrain_data.o: src/terrain_data.cpp.o
+.PHONY : src/terrain_data.o
+
+# target to build an object file
+src/terrain_data.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/create_raster.dir/build.make CMakeFiles/create_raster.dir/src/terrain_data.cpp.o
+.PHONY : src/terrain_data.cpp.o
+
+src/terrain_data.i: src/terrain_data.cpp.i
+.PHONY : src/terrain_data.i
+
+# target to preprocess a source file
+src/terrain_data.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/create_raster.dir/build.make CMakeFiles/create_raster.dir/src/terrain_data.cpp.i
+.PHONY : src/terrain_data.cpp.i
+
+src/terrain_data.s: src/terrain_data.cpp.s
+.PHONY : src/terrain_data.s
+
+# target to generate assembly for a file
+src/terrain_data.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/create_raster.dir/build.make CMakeFiles/create_raster.dir/src/terrain_data.cpp.s
+.PHONY : src/terrain_data.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,12 +186,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... create_raster"
-	@echo "... src/data.o"
-	@echo "... src/data.i"
-	@echo "... src/data.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/terrain_data.o"
+	@echo "... src/terrain_data.i"
+	@echo "... src/terrain_data.s"
 .PHONY : help
 
 

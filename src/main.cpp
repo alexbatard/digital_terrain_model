@@ -1,7 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <list>
-#include "data.h"
+#include "terrain_data.h"
 
 using namespace std;
 
@@ -25,7 +25,16 @@ using namespace std;
 //     }
 // };
 
-void print(list<Data> const &list)
+// void print(list<Data> const &list)
+// {
+//     for (auto const &i : list)
+//     {
+//         cout.precision(10);
+//         cout << i << endl;
+//     }
+// }
+
+void print(list<double> const &list)
 {
     for (auto const &i : list)
     {
@@ -34,7 +43,7 @@ void print(list<Data> const &list)
     }
 }
 
-void get_data(const string &filename)
+void getData(const string &filename, int size)
 {
     ifstream file(filename);
     if (!file.is_open())
@@ -42,14 +51,22 @@ void get_data(const string &filename)
         cout << "Error opening file" << endl;
         exit(1);
     }
+    list<double> data_x;
+    list<double> data_y;
+    list<double> data_alt;
+    TerrainData data;
 
-    list<Data> database;
-    Data data;
     while (file >> data)
     {
-        database.push_back(data);
+        data_x.push_back(data.getX(size));
+        data_y.push_back(data.getY(size));
+        data_alt.push_back(data.getAlt());
+        // database.push_back(data);
     }
-    print(database);
+    // print(database);
+    print(data_x);
+    // print(data_y);
+    // print(data_alt);
 
     file.close();
 }
@@ -63,7 +80,7 @@ int main(int argc, char **argv)
         exit(1);
     };
     string filename = argv[1];
-    // int size = int(argv[2]);
-    get_data(filename);
+    int size = int(argv[2]);
+    getData(filename, size);
     return 0;
 }

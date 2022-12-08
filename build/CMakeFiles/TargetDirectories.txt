@@ -1,3 +1,3 @@
-/home/alex/Documents/C++/MNT_project/build/CMakeFiles/create_raster.dir
-/home/alex/Documents/C++/MNT_project/build/CMakeFiles/edit_cache.dir
-/home/alex/Documents/C++/MNT_project/build/CMakeFiles/rebuild_cache.dir
+/home/alex/Documents/C++/digital_terrain_model/build/CMakeFiles/create_raster.dir
+/home/alex/Documents/C++/digital_terrain_model/build/CMakeFiles/edit_cache.dir
+/home/alex/Documents/C++/digital_terrain_model/build/CMakeFiles/rebuild_cache.dir

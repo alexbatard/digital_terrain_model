@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/alex/Documents/C++/MNT_project/src/data.cpp" "CMakeFiles/create_raster.dir/src/data.cpp.o" "gcc" "CMakeFiles/create_raster.dir/src/data.cpp.o.d"
-  "/home/alex/Documents/C++/MNT_project/src/main.cpp" "CMakeFiles/create_raster.dir/src/main.cpp.o" "gcc" "CMakeFiles/create_raster.dir/src/main.cpp.o.d"
+  "/home/alex/Documents/C++/digital_terrain_model/src/main.cpp" "CMakeFiles/create_raster.dir/src/main.cpp.o" "gcc" "CMakeFiles/create_raster.dir/src/main.cpp.o.d"
+  "/home/alex/Documents/C++/digital_terrain_model/src/terrain_data.cpp" "CMakeFiles/create_raster.dir/src/terrain_data.cpp.o" "gcc" "CMakeFiles/create_raster.dir/src/terrain_data.cpp.o.d"
   )
 
 # Targets to which this target links.

@@ -1,4 +1,4 @@
-# Install script for directory: /home/alex/Documents/C++/MNT_project
+# Install script for directory: /home/alex/Documents/C++/digital_terrain_model
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/alex/Documents/C++/MNT_project/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/alex/Documents/C++/digital_terrain_model/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
