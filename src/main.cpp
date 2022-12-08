@@ -5,36 +5,8 @@
 
 using namespace std;
 
-// struct Data
-// {
-//     double lat;
-//     double lon;
-//     double alt;
 
-//     friend istream &operator>>(istream &input, Data &data)
-//     {
-//         char space;
-//         input >> data.lat >> space >> data.lon >> space >> data.alt;
-//         return input;
-//     }
-
-//     friend ostream &operator<<(ostream &output, const Data &data)
-//     {
-//         output << data.lat << " " << data.lon << " " << data.alt;
-//         return output;
-//     }
-// };
-
-// void print(list<Data> const &list)
-// {
-//     for (auto const &i : list)
-//     {
-//         cout.precision(10);
-//         cout << i << endl;
-//     }
-// }
-
-void print(list<double> const &list)
+void printList(list<double> const &list)
 {
     for (auto const &i : list)
     {
@@ -61,12 +33,10 @@ void getData(const string &filename, int size)
         data_x.push_back(data.getX(size));
         data_y.push_back(data.getY(size));
         data_alt.push_back(data.getAlt());
-        // database.push_back(data);
     }
-    // print(database);
-    print(data_x);
-    // print(data_y);
-    // print(data_alt);
+    // printList(data_x);
+    // printList(data_y);
+    // printList(data_alt);
 
     file.close();
 }
@@ -80,7 +50,7 @@ int main(int argc, char **argv)
         exit(1);
     };
     string filename = argv[1];
-    int size = int(argv[2]);
+    int size = stoi(argv[2]);
     getData(filename, size);
     return 0;
 }
