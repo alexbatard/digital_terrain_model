@@ -34,7 +34,7 @@ void getData(const string &filename, int size)
         data_y.push_back(data.getY(size));
         data_alt.push_back(data.getAlt());
     }
-    // printList(data_x);
+    printList(data_x);
     // printList(data_y);
     // printList(data_alt);
 
