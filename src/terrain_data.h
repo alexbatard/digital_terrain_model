@@ -2,6 +2,7 @@
 #define __TERRAIN_DATA_H__
 
 #include <fstream>
+#include <proj.h>
 
 using namespace std;
 
@@ -13,9 +14,9 @@ public:
     double getLat() const;
     double getLon() const;
     double getAlt() const;
-    double getX(int size);
-    double getY(int size);
-    void set_X_Y_coords();
+    double getX() const;
+    double getY() const;
+    void set_X_Y_coords(PJ_COORD cartesian_coord);
 
     friend istream &operator>>(istream &input, TerrainData &data);
     friend ostream &operator<<(ostream &output, const TerrainData &data);
