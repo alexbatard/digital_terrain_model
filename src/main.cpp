@@ -1,3 +1,4 @@
+#include "point_data.h"
 #include "terrain_data.h"
 #include <proj.h>
 #include <fstream>
@@ -6,16 +7,16 @@
 
 using namespace std;
 
-void printList(list<double> const &list)
-{
-    for (auto const &i : list)
-    {
-        cout.precision(10);
-        cout << i << endl;
-    }
-}
+// void printList(list<double> const &list)
+// {
+//     for (auto const &i : list)
+//     {
+//         cout.precision(10);
+//         cout << i << endl;
+//     }
+// }
 
-void getXYZData(const string &filename, TerrainData data, list<double> data_x, list<double> data_y, list<double> data_z, PJ *P, PJ_COORD geo_coord, PJ_COORD cartesian_coord)
+void getXYZData(const string &filename, PointData point, TerrainData terrain, PJ *P, PJ_COORD geo_coord, PJ_COORD cartesian_coord)
 {
     ifstream file(filename);
     if (!file.is_open())
@@ -24,23 +25,22 @@ void getXYZData(const string &filename, TerrainData data, list<double> data_x, l
         exit(1);
     }
 
-    while (file >> data)
+    while (file >> point)
     {
-        geo_coord.lpzt.lam = data.getLon();
-        geo_coord.lpzt.phi = data.getLat();
+        geo_coord.lpzt.lam = point.getLon();
+        geo_coord.lpzt.phi = point.getLat();
         geo_coord.lpzt.z = 0.;
 
         cartesian_coord = proj_trans(P, PJ_FWD, geo_coord);
 
-        data.set_X_Y_coords(cartesian_coord);
+        point.setXYCoords(cartesian_coord);
 
-        data_x.push_back(data.getX());
-        data_y.push_back(data.getY());
-        data_z.push_back(data.getAlt());
+        terrain.addCoordX(point.getX());
+        terrain.addCoordY(point.getY());
+        terrain.addCoordZ(point.getAlt());
     }
-    // printList(data_x);
-    // printList(data_y);
-    // printList(data_z);
+    terrain.printDataX();
+ 
 
     file.close();
 }
@@ -58,10 +58,8 @@ int main(int argc, char **argv)
     int size = stoi(argv[2]);
 
     // data variables
-    TerrainData data;
-    list<double> data_x;
-    list<double> data_y;
-    list<double> data_z;
+    PointData point;
+    TerrainData terrain;
 
     // proj
     PJ *P = proj_create_crs_to_crs(PJ_DEFAULT_CTX,
@@ -75,7 +73,7 @@ int main(int argc, char **argv)
     P = norm;
 
     // get XYZ coordinates
-    getXYZData(filename, data, data_x, data_y, data_z, P, geo_coord, cartesian_coord);
+    getXYZData(filename, point, terrain, P, geo_coord, cartesian_coord);
 
     proj_destroy(P);
 

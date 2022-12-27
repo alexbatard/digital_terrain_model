@@ -11,50 +11,44 @@ TerrainData::~TerrainData()
 {
 }
 
-double TerrainData::getLat() const
+void TerrainData::addCoordX(double coord_X)
 {
-    return m_lat;
+    data_x.push_back(coord_X);
 }
 
-double TerrainData::getLon() const
+void TerrainData::addCoordY(double coord_Y)
 {
-    return m_lon;
+    data_y.push_back(coord_Y);
 }
 
-double TerrainData::getAlt() const
+void TerrainData::addCoordZ(double coord_Z)
 {
-    return m_alt;
+    data_z.push_back(coord_Z);
 }
 
-double TerrainData::getX() const
+void TerrainData::printDataX()
 {
-    return m_x;
+    for (auto const &i : data_x)
+    {
+        cout.precision(10);
+        cout << i << endl;
+    }
 }
 
-double TerrainData::getY() const
+void TerrainData::printDataY()
 {
-    return m_y;
+    for (auto const &i : data_y)
+    {
+        cout.precision(10);
+        cout << i << endl;
+    }
 }
 
-void TerrainData::set_X_Y_coords(PJ_COORD cartesian_coord)
+void TerrainData::printDataZ()
 {
-    m_x = cartesian_coord.xy.x;
-    m_y = cartesian_coord.xy.y;
-
-    // Print the coordinates
-    // cout.precision(10);
-    // cout << "X: " << m_x << endl;
-    // cout << "Y: " << m_y << endl;
-}
-
-istream &operator>>(istream &input, TerrainData &data)
-{
-    input >> data.m_lat >> data.m_lon >> data.m_alt;
-    return input;
-}
-
-ostream &operator<<(ostream &output, const TerrainData &data)
-{
-    output << data.m_lat << " " << data.m_lon << " " << data.m_alt;
-    return output;
+    for (auto const &i : data_z)
+    {
+        cout.precision(10);
+        cout << i << endl;
+    }
 }
