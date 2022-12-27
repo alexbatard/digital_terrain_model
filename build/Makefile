@@ -153,6 +153,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/create_raster.dir/build.make CMakeFiles/create_raster.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/point_data.o: src/point_data.cpp.o
+.PHONY : src/point_data.o
+
+# target to build an object file
+src/point_data.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/create_raster.dir/build.make CMakeFiles/create_raster.dir/src/point_data.cpp.o
+.PHONY : src/point_data.cpp.o
+
+src/point_data.i: src/point_data.cpp.i
+.PHONY : src/point_data.i
+
+# target to preprocess a source file
+src/point_data.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/create_raster.dir/build.make CMakeFiles/create_raster.dir/src/point_data.cpp.i
+.PHONY : src/point_data.cpp.i
+
+src/point_data.s: src/point_data.cpp.s
+.PHONY : src/point_data.s
+
+# target to generate assembly for a file
+src/point_data.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/create_raster.dir/build.make CMakeFiles/create_raster.dir/src/point_data.cpp.s
+.PHONY : src/point_data.cpp.s
+
 src/terrain_data.o: src/terrain_data.cpp.o
 .PHONY : src/terrain_data.o
 
@@ -189,6 +213,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/point_data.o"
+	@echo "... src/point_data.i"
+	@echo "... src/point_data.s"
 	@echo "... src/terrain_data.o"
 	@echo "... src/terrain_data.i"
 	@echo "... src/terrain_data.s"
