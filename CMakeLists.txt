@@ -16,6 +16,8 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
   ${PROJ_LIBRARIES}
 )
 
+target_link_libraries(${PROJECT_NAME} PRIVATE -lgmp)
+
 target_include_directories(${PROJECT_NAME} PUBLIC
   ${PROJ_INCLUDEDIR}
 )
