@@ -12,6 +12,7 @@ using namespace std;
 PointData point;
 TerrainData terrain;
 vector<double> points;
+vector<double> p = {252930, 6.80564e+06};
 
 void getXYZData(const string &filename, PJ *P, PJ_COORD geo_coord, PJ_COORD cartesian_coord)
 {
@@ -54,19 +55,46 @@ bool isInsideTriangle(double x, double y, double xa, double ya, double xb, doubl
     return A >= 0 && A <= 1 && B >= 0 && B <= 1 && C >= 0 && C <= 1;
 }
 
-void findTriangle(double x, double y, delaunator::Delaunator d)
+void interpolation(vector<double> &p, delaunator::Delaunator &d)
 {
+    // Iterate over all the triangles in the Delaunay triangulation
+    for (size_t i = 0; i < d.triangles.size(); i += 3)
+    {
+        // Get the indices of the vertices of the triangle
+        size_t a = d.triangles[i], b = d.triangles[i + 1], c = d.triangles[i + 2];
 
-}
+        // Get the coordinates of the vertices of the triangle
+        double xa = d.coords[2 * d.triangles[i]];
+        double ya = d.coords[2 * d.triangles[i] + 1];
+        double xb = d.coords[2 * d.triangles[i + 1]];
+        double yb = d.coords[2 * d.triangles[i + 1] + 1];
+        double xc = d.coords[2 * d.triangles[i + 2]];
+        double yc = d.coords[2 * d.triangles[i + 2] + 1];
 
-void performTriangulation(TerrainData terrain)
-{
-    // TODO
-}
+        // cout << "Triangle " << i / 3 << ": " << xa << " " << ya << " " << xb << " " << yb << " " << xc << " " << yc << endl;
 
-double interpolate()
-{
-    // TODO
+        // Check if the point is inside the triangle
+        if (isInsideTriangle(p[0], p[1], xa, ya, xb, yb, xc, yc))
+        {
+            cout.precision(10);
+            cout << "Triangle " << i / 3 << ": " << xa << " " << ya << " " << xb << " " << xc << " " << yc << " contains the point" << endl;
+
+            // Get the altitude values of the vertices of the triangle
+            double za = terrain.getCoordZ()[i];
+            double zb = terrain.getCoordZ()[i + 1];
+            double zc = terrain.getCoordZ()[i + 2];
+
+            // Compute the barycentric coordinates of the point
+            double A = ((yb - yc) * (p[0] - xc) + (xc - xb) * (p[1] - yc)) / ((yb - yc) * (xa - xc) + (xc - xb) * (ya - yc));
+            double B = ((yc - ya) * (p[0] - xc) + (xa - xc) * (p[1] - yc)) / ((yb - yc) * (xa - xc) + (xc - xb) * (ya - yc));
+            double C = 1 - A - B;
+
+            // Interpolate the value using the barycentric coordinates
+            double zp = A * za + B * zb + C * zc;
+            cout << "Altitude values of the vertices: " << za << " " << zb << " " << zc << endl;
+            cout << "Interpolated value at point p: " << zp << endl;
+        }
+    }
 }
 
 double determinePixelColor(double pixel_x, double pixel_y)
@@ -104,35 +132,7 @@ int main(int argc, char **argv)
     // Create Delaunator object
     delaunator::Delaunator d(points);
 
-    vector<double> p = {0.5, 0.5};
-
-    // Iterate over all the triangles in the Delaunay triangulation
-    for (size_t i = 0; i < d.triangles.size(); i += 3)
-    {
-        // Get the indices of the vertices of the triangle
-        size_t a = d.triangles[i], b = d.triangles[i + 1], c = d.triangles[i + 2];
-
-        double xa = d.coords[2 * d.triangles[i]];
-        double ya = d.coords[2 * d.triangles[i] + 1];
-        double xb = d.coords[2 * d.triangles[i + 1]];
-        double yb = d.coords[2 * d.triangles[i + 1] + 1];
-        double xc = d.coords[2 * d.triangles[i + 2]];
-        double yc = d.coords[2 * d.triangles[i + 2] + 1];
-
-        // Check if the point is inside the triangle
-        if (isInsideTriangle(p[0], p[1], xa, ya, xb, yb, xc, yc))
-        {
-            // The triangle contains the point
-            cout << "Triangle " << i / 3 << " contains the point" << endl;
-            break;
-        }
-    }
-
-    // Print the triangles of the triangulation
-    // for (size_t i = 0; i < delaunator.triangles.size(); i += 3)
-    // {
-    //     cout << delaunator.triangles[i] << " " << delaunator.triangles[i + 1] << " " << delaunator.triangles[i + 2] << endl;
-    // }
+    interpolation(p, d);
 
     return 0;
 }
