@@ -13,22 +13,22 @@ TerrainData::~TerrainData()
 
 void TerrainData::addCoordX(double coord_X)
 {
-    coords_X.push_back(coord_X);
+    m_coords_X.push_back(coord_X);
 }
 
 void TerrainData::addCoordY(double coord_Y)
 {
-    coords_Y.push_back(coord_Y);
+    m_coords_Y.push_back(coord_Y);
 }
 
 void TerrainData::addCoordZ(double coord_Z)
 {
-    coords_Z.push_back(coord_Z);
+    m_coords_Z.push_back(coord_Z);
 }
 
 void TerrainData::printDataX()
 {
-    for (auto const &i : coords_X)
+    for (auto const &i : m_coords_X)
     {
         cout.precision(10);
         cout << i << endl;
@@ -37,7 +37,7 @@ void TerrainData::printDataX()
 
 void TerrainData::printDataY()
 {
-    for (auto const &i : coords_Y)
+    for (auto const &i : m_coords_Y)
     {
         cout.precision(10);
         cout << i << endl;
@@ -46,7 +46,7 @@ void TerrainData::printDataY()
 
 void TerrainData::printDataZ()
 {
-    for (auto const &i : coords_Z)
+    for (auto const &i : m_coords_Z)
     {
         cout.precision(10);
         cout << i << endl;
