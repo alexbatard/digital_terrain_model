@@ -13,7 +13,6 @@ PointData point;
 TerrainData terrain;
 vector<double> points;           // vector of x and y coordinates from the terrain data
 vector<double> x_y_z_min_max(6); // x, y and z coordinates min and max values
-// vector<double> p_test = {252930, 6.80564e+06};
 
 const int numColors = 9; // number of colors
 const double colorValues[numColors] = {0.0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0};
@@ -158,9 +157,6 @@ bool isInsideTriangle(double x, double y, double xa, double ya, double xb, doubl
 // Interpolate the color of the point (x, y) using the altitudes of the vertices of the triangle
 void interpolation(delaunator::Delaunator &d, vector<double> &p, double color[3])
 {
-    // TODO sort the list of triangles based on the coordinates of their center
-    // TODO dichotomic search to find the triangle(s) containing the point (x, y)
-
     // Iterate over all the triangles in the Delaunay triangulation
     for (size_t i = 0; i < d.triangles.size(); i += 3)
     {
@@ -224,7 +220,7 @@ void create_image(int img_width, delaunator::Delaunator &d)
         cout << "Error opening image" << endl;
         exit(1);
     }
-    image << "P3" << endl;                           // PPM format
+    image << "P6" << endl;                           // PPM format
     image << img_width << " " << img_height << endl; // width and height of the image
     image << 255 << endl;
 
@@ -235,15 +231,9 @@ void create_image(int img_width, delaunator::Delaunator &d)
         {
             vector<double> p = {i * px_size + x_y_z_min_max[0], j * px_size + x_y_z_min_max[2]}; // coordinates of the pixel in the projection
             interpolation(d, p, color);
-            image << color[0] << " " << color[1] << " " << color[2] << "\n"; // write the color of the pixel in the image
+            image << color[0] << color[1] << color[2] << "\n"; // write the color of the pixel in the image
         }
     }
-    // for (size_t i = 0; i < d.triangles.size(); i += 3)
-    // {
-    //     interpolation(d, i, color);
-    //     // cout << " " << color[0] << " " << color[1] << " " << color[2] << endl;
-    //     image << color[0] << " " << color[1] << " " << color[2] << "\n";
-    // }
 
     image.close();
 }
